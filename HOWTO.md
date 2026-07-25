@@ -108,10 +108,12 @@ through the nonsense and reach the exciting new stuff.
 *"This is automatable; automation will flood the field
 with average papers."* Sure, and some will apply it
 without thinking. Let them: unthinking output excites
-and motivates no one. Glass's law -- the sqrt(n) people
-in a field drive the field [verify exact source; dated
-1966] -- was so then and is ever thus. There is only
-one road to the sqrt(n): hard thinking about hard
+and motivates no one. Price's law -- the sqrt(n) of a
+field's contributors produce half its output, so a
+small core drives the field (Price, Little Science,
+Big Science, 1963) -- was so then and is ever thus.
+There is only one road into the sqrt(n): hard thinking
+about hard
 problems, and clever actions. Along that road it helps
 to have tools that cut the needless ceremony of
 reporting results. Hence this work.
