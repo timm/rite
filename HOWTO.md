@@ -85,3 +85,33 @@ Rule of the loop: steps 1-7 are cheap and mostly
 automatic; step 10 is the expensive one and cannot be
 delegated; step 13's recode check is automatic again.
 Spend human time where only humans work.
+
+## Objections
+
+Two critiques arrive early; the answers live here so
+every paper can reuse them.
+
+*"Newell hands you a hammer and sends you hunting
+nails; decades of that is a research rut."* Decades of
+following this formula say otherwise. The lit review
+method keeps forcing contact with material well outside
+prior experience, and the experiments that follow --
+and the problems they hit -- keep forcing critical
+re-evaluation of the tool base's own premises. One
+career's evidence: the author's own encode of his last
+five years, offered in the meta-paper (how2rite) so
+readers can judge the rut question for themselves. The
+claim here is smaller than "no ruts exist": fighting
+with your sharpest sword can be the fastest way to cut
+through the nonsense and reach the exciting new stuff.
+
+*"This is automatable; automation will flood the field
+with average papers."* Sure, and some will apply it
+without thinking. Let them: unthinking output excites
+and motivates no one. Glass's law -- the sqrt(n) people
+in a field drive the field [verify exact source; dated
+1966] -- was so then and is ever thus. There is only
+one road to the sqrt(n): hard thinking about hard
+problems, and clever actions. Along that road it helps
+to have tools that cut the needless ceremony of
+reporting results. Hence this work.
