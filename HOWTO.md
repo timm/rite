@@ -18,8 +18,9 @@ cite the long one.
 | 5  | assemble critics (auto: above-knee papers     | critics           |
 |    | from top venues, CFP reviewer-2, ACM          |                   |
 |    | empirical standards, nearest-10 papers)       |                   |
-| 6  | search: knee -> recents + classics; code      | search, encode    |
-|    | full text at thr; find interesting subsets    |                   |
+| 6  | search: knee -> recents; snowball back to     | search, encode    |
+|    | classics, forward from seeds; code full       |                   |
+|    | text at thr; find interesting subsets         |                   |
 | 7  | define the most relevant problem (from 6) --  | choose            |
 |    | or the strangest (Wheeler slice)              |                   |
 | 8  | i=0; write paper[0] = title + abstract +      | prose, structure  |

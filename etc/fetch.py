@@ -9,7 +9,11 @@ the first 500 works
   papers.tsv  rank, cites, year, doi, title (tab-sep)
   cites.txt   cite counts sorted descending, knee marked
 Knee = point of max distance from the line joining the
-first and last points of the sorted-cites curve."""
+first and last points of the sorted-cites curve.
+README may also hold optional seed: lines (DOI or
+OpenAlex W-id each); seeds join the reading set
+regardless of the knee and anchor snowball.py's
+forward pass."""
 import os, json, urllib.request, urllib.parse
 os.makedirs("lit", exist_ok=True)
 
@@ -22,8 +26,24 @@ def readme(field):
 
 GOAL  = readme("goal")
 YEARS = readme("years")
+SEEDS = [line.split(":", 1)[1].strip()
+         for line in open("README.md")
+         if line.startswith("seed:")]
 API  = "https://api.openalex.org/works"
 SEL  = "id,title,publication_year,cited_by_count,doi"
+
+def resolve(seed):
+  "seed: line (DOI or W-id) -> OpenAlex work, or None."
+  s = seed.replace("https://doi.org/", "")
+  w = s.split("/")[-1]
+  flt = ("openalex:" + w if w.startswith("W")
+         else "doi:" + s)
+  q = urllib.parse.urlencode(dict(
+      filter=flt, per_page=1, select=SEL,
+      mailto="timm@ieee.org"))
+  with urllib.request.urlopen(f"{API}?{q}") as r:
+    got = json.load(r)["results"]
+  return got[0] if got else None
 
 def fetch(page):
   q = urllib.parse.urlencode(dict(
@@ -72,12 +92,21 @@ if __name__ == "__main__":
    f.write("\n# above the knee (%s papers)\n" % (knee + 1))
    flow(f, cites[:knee + 1])
  rows = sorted(papers, key=lambda p: -p["cited_by_count"])
+ keep = rows[:knee + 1]
+ ids  = {p["id"] for p in keep}
+ for s in SEEDS:
+   p = resolve(s)
+   if not p:
+     print("seed not found:", s)
+   elif p["id"] not in ids:
+     keep.append(p); ids.add(p["id"])
  with open("lit/read.tsv", "w") as f:
    f.write("cites\tyear\tdoi\ttitle\n")
-   for p in rows[:knee + 1]:
+   for p in keep:
      f.write("%s\t%s\t%s\t%s\n" % (
        p["cited_by_count"], p["publication_year"],
        (p["doi"] or "").replace("https://doi.org/", ""),
        (p["title"] or "").replace("\t", " ")))
  print("papers", n, "| knee rank", knee + 1,
-       "| cites at knee", cites[knee])
+       "| cites at knee", cites[knee],
+       "| seeds", len(SEEDS))

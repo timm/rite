@@ -30,7 +30,15 @@ years: 2021-2026
 
 The goal: and years: lines are machine-read by the
 engine's fetch.py; they are the single source of truth
-for the literature search.
+for the literature search. Optional seed: lines (one
+DOI or OpenAlex W-id each) force papers into the
+reading set and anchor the forward snowball, e.g.:
+
+    seed: 10.1007/s10664-017-9587-0
+
+Prefer the published-version DOI or the W-id;
+arXiv-minted 10.48550 DOIs are often absent from
+OpenAlex.
 """,
 "flags.py": '''"""Coding vocabulary: the ONE place the
 per-topic flags live. FLAGS = topic facet (which

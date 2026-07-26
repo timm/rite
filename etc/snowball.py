@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
-"""Backward snowball: find the older papers everyone in
-our above-knee reading list cites.
+"""Snowball both ways. Backward: find the older papers
+everyone in our above-knee reading list cites. Forward:
+find who cites the anchors since (anchors = README
+seed: lines if any, else the kept classics); writes
+lit/forward.tsv.
 
 Run from a WORKDIR root. Reruns the README search (same pages, same year filter),
 takes the above-knee set, harvests every reference list,
@@ -12,7 +15,7 @@ import os, json, urllib.request, urllib.parse
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from collections import Counter
-from fetch import GOAL, YEARS, API
+from fetch import GOAL, YEARS, API, SEEDS, resolve
 
 def get(url):
   with urllib.request.urlopen(url) as r:
@@ -72,3 +75,27 @@ with open("lit/read-classics.tsv", "w") as f:
       (p["title"] or "").replace("\t", " ")))
 print(len(rows), "classics;", len(keep),
       "kept at seen >= 5")
+
+def citers(work):
+  "Above-YEARS works citing this one, most-cited first."
+  q = urllib.parse.urlencode(dict(
+      filter="cites:%s,publication_year:%s" % (
+        work["id"].split("/")[-1], YEARS),
+      sort="cited_by_count:desc", per_page=50,
+      select=sel2, mailto="timm@ieee.org"))
+  return get(f"{API}?{q}")["results"]
+
+anchors = ([resolve(s) for s in SEEDS] if SEEDS
+           else keep)
+anchors = [a for a in anchors if a]
+fwd = [(a, p) for a in anchors for p in citers(a)]
+with open("lit/forward.tsv", "w") as f:
+  f.write("anchor\tcites\tyear\tdoi\ttitle\n")
+  for a, p in fwd:
+    f.write("%s\t%s\t%s\t%s\t%s\n" % (
+      a["id"].split("/")[-1], p["cited_by_count"],
+      p["publication_year"],
+      (p["doi"] or "").replace("https://doi.org/", ""),
+      (p["title"] or "").replace("\t", " ")))
+print(len(anchors), "anchors;", len(fwd),
+      "forward hits -> lit/forward.tsv")
