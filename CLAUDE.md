@@ -23,7 +23,11 @@ Workdir (one per paper; stamp with etc/init.py DIR):
 
     CLAUDE.md   pointer back to this engine
     README.md   goal: and years: lines; SSOT for the
-                literature search (fetch.py reads it)
+                literature search (fetch.py reads it);
+                optional seed: lines (published DOI or
+                OpenAlex W-id) force papers into the
+                reading set and anchor the forward
+                snowball
     flags.py    coding vocabulary; SSOT for the flags
     bench.md    benchmark norms of the target field,
                 with [verify] marks (the eighth prompt
@@ -37,7 +41,9 @@ Workdir (one per paper; stamp with etc/init.py DIR):
         the workdir README goal -> lit/papers.tsv,
         lit/cites.txt (knee marked), lit/read.tsv
     python3 $RITE/etc/snowball.py  backward snowball ->
-        lit/classics.tsv, lit/read-classics.tsv
+        lit/classics.tsv, lit/read-classics.tsv;
+        forward snowball from the seeds (else the kept
+        classics) -> lit/forward.tsv
     python3 $RITE/etc/stubs.py     lit/{recent,classics}/
         index.tsv + note stubs (never overwrites)
     python3 $RITE/etc/code.py      abstract coding ->
