@@ -116,9 +116,125 @@ description: Write the sentences: whiteboard voice, opening moves, banned LLM te
 - No "delve", "crucial", "pivotal", "seamless",
   "holistic", "leverage" (as a verb), "harness",
   "underscore", "foster".
+- Two word families mark LLM prose. Family 1 is the
+  2023 fingerprint, greppable, banned outright (the
+  delve/crucial list above, plus): "realm", "navigate"
+  (as metaphor), "intricate", "comprehensive" (as
+  self-praise), "tapestry", "showcase", "paramount".
+- Family 2 is the chat-assistant register: every word
+  is a real word a careful writer might use, so it
+  survives find-and-replace and must be policed by
+  density, not blacklist. The vocabulary: "honest" /
+  "honestly" (as self-praise; honesty as a technical
+  property, e.g. honest reporting of negative results,
+  is fine), "genuinely", "truly", "the real question
+  is", "basically", "essentially", "load-bearing" /
+  "doing a lot of work" / "cashing out" (as metaphor),
+  "push back" / "pushback" / "I'd push on", "steelman",
+  "charitable reading", "worth noting" / "worth
+  flagging" / "I'd flag", "to be fair" / "to be clear"
+  / "to be direct", "here's the thing", "that said",
+  "at the end of the day", "the reality is", "the
+  tension is" / "the tell is" / "the move is" / "the
+  failure mode is", "surface" (as verb), "gesture at",
+  "unpack", "dig into", "flesh out", "thread" (as
+  metaphor), "land" ("that doesn't land"),
+  "non-trivial", "meaningfully", "materially",
+  "nuanced", "granular" (as vague praise; granularity
+  as a measured quantity is fine), "sharp", "crisp",
+  "clean", "principled" (all four as praise),
+  "first-order" / "second-order" / "downstream" (as
+  metaphor), "compelling", "arguably", "notably",
+  "importantly" as a sentence opener, "it's worth
+  noting", "keep in mind", "in essence", "boils down
+  to". One of these per page can pass; two in one
+  paragraph reads machine-made. These words hedge or
+  perform; state the claim and give the evidence.
+- No "Not X. Y." two-beat corrections ("Not speed.
+  Correctness."). Sibling of the mic-drop rule above.
+- The colon as rhetorical pivot is a tell. Fine:
+  colons that introduce a real enumeration or a
+  definition. Tells, especially in clusters:
+  clause + colon + restatement ("The result is
+  stable: 20 repeats, same ranking"), fragment +
+  colon + expansion ("One insight: bandwidth is the
+  bottleneck"), label + colon + verdict ("Bottom
+  line: it does not scale"). Above ~1.5 colons per
+  100 words of body prose, start cutting.
+- No one-line paragraph as emphasis drumbeat: the
+  isolated verdict fragment after a normal paragraph,
+  the trailing "And that matters.", the bare "And" /
+  "But" sentence standing alone. In a real paper,
+  paragraphs under ten words (outside headers,
+  captions, list items) are close to zero; in
+  generated prose they arrive about one per two
+  paragraphs, always next to a normal-length one,
+  which is what makes them read as staged.
+- These rules are lintable without a model:
+  etc/style.py counts colon rate, em-dash rate,
+  short paragraphs, and word hits from both families
+  over .tex/.md prose. Run it at steps 9 and 13;
+  treat any flag as a rewrite order, not a
+  suggestion.
 - No perfectly uniform paragraph shapes. Vary: some
   paragraphs are two sentences.
 - Do not end every paragraph with a summary sentence.
 - Semicolons rare; prefer a period and a new sentence.
   Colons introduce lists and definitions, not dramatic
   reveals.
+- No run-on sentences. One sentence, one claim; when a
+  sentence stacks three clauses on commas, or chains
+  "and ... and ...", or tops ~35 words, split it. The
+  style.py linter flags sentences over that length.
+
+## The STE blend (clarity of ASD-STE100, minus the wood)
+
+Two zones. Which zone a passage is in decides which
+contract wins. (STE rules themselves: see the ste skill.)
+
+### Zone 1: full STE, wooden on purpose
+
+Procedures, pause/review boxes, captions, table cells,
+READMEs, prompt boxes, safety-style call-outs. These are
+technical documentation for a reader deciding what to DO.
+Apply STE whole: <= 20 words, imperative, one instruction
+per sentence, condition first then comma then command,
+name the exact file to edit.
+
+### Zone 2: argumentative prose, STE skeleton + house skin
+
+For a reader deciding what to BELIEVE.
+
+Adopt from STE as hard rules:
+- 25 words is a CEILING, never a target.
+- One topic per sentence; one topic per paragraph; six
+  sentences per paragraph max; topic sentence first as
+  the default.
+- Kill nominalizations: "perform an evaluation of" ->
+  "evaluate".
+- Active voice; passive only when the agent is unknown.
+- Keep the articles; no telegraphic style.
+- One word, one meaning; one meaning, one word. Never
+  vary a key term (no elegant variation).
+
+House style overrides STE on:
+- Rhythm: mix lengths hard under the ceiling; the
+  5-word pivot beside the 24-word build. Variance is a
+  rule, not a permission.
+- "Hence" stays the workhorse connective; rhetorical
+  questions still drive sections.
+- e.g. and i.e. stay, mid-sentence, unceremonious.
+- One bolded load-bearing claim; one dry joke per
+  document; asides and footnote war stories stay.
+- Argument shapes untouched: drawback-then-fix,
+  respect-then-disrespect, FAQs, digression flags.
+
+Anti-thud rule (from neither parent): never three
+consecutive sentences with the same opening word or the
+same length band. Sentence-initial "Thus," twice in a
+row is the tell that STE is showing through.
+
+Why this split works: nearly every adopted rule is
+mechanically checkable (word counts, opener runs,
+"-tion of" patterns, key-term variance), so the blend
+keeps STE's lintability without its monotone.
