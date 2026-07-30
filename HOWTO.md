@@ -42,7 +42,10 @@ cite the long one.
 Eight. Seven are engine skills in .claude/skills/;
 the eighth (bench) is per-paper, the workdir bench.md,
 same shape: short quotable form first, detail after.
-Supporting machinery in the rightmost column.
+Supporting machinery in the rightmost column. One more
+engine skill, ste (ASD-STE100 Issue 9, minimized), is
+reference material rather than a division: prose calls
+it when a paper must be written in STE.
 
 Provenance of the style content: synthesis of (1) the
 proposal-voice style.md (SLES/DRR/BINGO/EZR, amended
@@ -69,9 +72,9 @@ whole, never retype.
 | structure | 8,9          | skeleton; section duties;       |                                 |
 |           |              | artifact placement (tech facet  |                                 |
 |           |              | -> Methods); Widom as audit     |                                 |
-| prose     | 8,9,13       | sentence mechanics; banned LLM  |                                 |
-|           |              | tells; LaTeX; opening moves;    |                                 |
-|           |              | elevator speech                 |                                 |
+| prose     | 8,9,13       | sentence mechanics; banned LLM  | ste skill (ASD-STE100 rules,    |
+|           |              | tells; LaTeX; opening moves;    | for STE papers)                 |
+|           |              | elevator speech; the STE blend  |                                 |
 | critics   | 5,10,11,12   | assemble-your-critics; Shaw     |                                 |
 |           |              | reader questions; Laurie's      |                                 |
 |           |              | Laws; human discussion          |                                 |

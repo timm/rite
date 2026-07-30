@@ -16,7 +16,7 @@ list (prose) and the shipping self-test (ship).
 
 ## Engine vs workdir
 
-Engine (this repo): CLAUDE.md, HOWTO.md, seven skills,
+Engine (this repo): CLAUDE.md, HOWTO.md, eight skills,
 etc/*.py, pdf/ (style-source papers).
 
 Workdir (one per paper; stamp with etc/init.py DIR):

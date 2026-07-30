@@ -2,8 +2,9 @@
 
 A 14-step loop (HOWTO.md), eight prompt divisions
 (seven skills in .claude/skills/ plus a per-paper
-bench.md), and an OpenAlex literature pipeline
-(etc/*.py). Papers live in their own workdirs; this
+bench.md; an eighth skill, ste, holds the ASD-STE100
+rulebook the prose division calls on), and an OpenAlex
+literature pipeline (etc/*.py). Papers live in their own workdirs; this
 repo stays read-only while writing.
 
 Start a paper:
